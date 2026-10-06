@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مدیریت کاربران | پروژه احراز هویت</title>
+    <link rel="stylesheet" href="App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+       .form-container {
+  width: 320px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: sans-serif;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 9px;
+  background: #7d4caf;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  
+}
+
+button[type="submit"]:hover {
+  background: #411f57;
+}
+</style>
+</head>
+<body>
+    <div id="app-container">
+       
+        <header id="header">
+            <button id="menu-toggle">☰</button>
+            <h1>تعریف/ویرایش کاربران</h1>
+        </header>
+
+        <div id="wrap">
+          
+            <aside id="sidebar">
+                <ul>
+                  <li><a href="index.html"><span class="icon">🏠</span> <span class="link-text">صفحه اصلی</span></a></li>
+           <li><a href="login.html"><span class="icon">🔐</span> <span class="link-text">ورود</span></a></li>
+                    <li><a href="standby.html"><span class="icon">⏳</span> <span class="link-text">صفحه Stand By</span></a></li>
+                    <li><a href="face_detection.html"><span class="icon">👁️</span> <span class="link-text">تشخیص چهره</span></a></li>
+                    <li><a href="attendance_logs.html"><span class="icon">📊</span> <span class="link-text">گزارش نتایج تردد</span></a></li>
+                    <li><a href="Identity_Employee.html"><span class="icon">👥</span> <span class="link-text">مدیریت کاربران</span></a></li>
+                    <li><a href="profile.html"><span class="icon">🙍‍♂️</span> <span class="link-text">پروفایل</span></a></li>
+                    <li><a href="Device-setting.html"><span class="icon">⚙️</span> <span class="link-text">تنظیمات دستگاه</span></a></li>
+                    <li><a href="#" onclick="logout()"><span class="icon">🚪</span> <span class="link-text">خروج</span></a></li>
+                </ul>
+            </aside>
+
+              <main id="content">
+                <div class="form-container">
+                    <form id="identityForm">
+                        <div class="form-group">
+                            <label for="userId">کد شناسه:</label>
+                            <input type="text" id="userId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">نام:</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">نام خانوادگی:</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nationalCode">کد ملی:</label>
+                            <input type="text" id="nationalCode" required>
+                        </div>
+                        <button type="submit">ذخیره اطلاعات</button>
+                    </form>
+                    <div id="message"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+   
+     <script src="App.js"></script>
+    <script src="Identity.js"></script>
+</body>
+</html>

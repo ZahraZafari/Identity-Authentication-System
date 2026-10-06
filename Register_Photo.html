@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ثبت تصویر کاربر | پروژه احراز هویت</title>
+    <link rel="stylesheet" href="App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .form-container {
+  width: 350px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  font-family: sans-serif;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="file"],
+select {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 9px;
+  font-size: 15px;
+  background: #7d4caf;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: #411f57;
+}
+
+#preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#preview img {
+  width: 80px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+    </style>
+</head>
+<body>
+    <div id="app-container">
+       
+        <header id="header">
+            <button id="menu-toggle">☰</button>
+            <h1>ثبت تصویر کاربر</h1>
+        </header>
+
+        <div id="wrap">
+           
+            <aside id="sidebar">
+                <ul>
+                   <li><a href="index.html"><span class="icon">🏠</span> <span class="link-text">صفحه اصلی</span></a></li>
+           <li><a href="login.html"><span class="icon">🔐</span> <span class="link-text">ورود</span></a></li>
+                    <li><a href="standby.html"><span class="icon">⏳</span> <span class="link-text">صفحه Stand By</span></a></li>
+                    <li><a href="face_detection.html"><span class="icon">👁️</span> <span class="link-text">تشخیص چهره</span></a></li>
+                    <li><a href="attendance_logs.html"><span class="icon">📊</span> <span class="link-text">گزارش نتایج تردد</span></a></li>
+                    <li><a href="Identity_Employee.html"><span class="icon">👥</span> <span class="link-text">مدیریت کاربران</span></a></li>
+                    <li><a href="profile.html"><span class="icon">🙍‍♂️</span> <span class="link-text">پروفایل</span></a></li>
+                    <li><a href="Device-setting.html"><span class="icon">⚙️</span> <span class="link-text">تنظیمات دستگاه</span></a></li>
+                    <li><a href="#" onclick="logout()"><span class="icon">🚪</span> <span class="link-text">خروج</span></a></li>
+                </ul>
+            </aside>
+
+           
+            <main id="content">
+                <div class="form-container">
+                    <form id="photoForm">
+                        <p>حداکثر ۳ تصویر از کاربر انتخاب یا ثبت کنید:</p>
+
+                        <div class="form-group">
+                            <label for="photo1">تصویر اول:</label>
+                            <input type="file" id="photo1" accept="image/*">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photo2">تصویر دوم (اختیاری):</label>
+                            <input type="file" id="photo2" accept="image/*">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photo3">تصویر سوم (اختیاری):</label>
+                            <input type="file" id="photo3" accept="image/*">
+                        </div>
+
+                            <hr>
+
+                        <div class="form-group">
+                        <label for="role">نقش کاربر:</label>
+                        <select id="role" required>
+                            <option value="">انتخاب کنید...</option>
+                            <option value="admin">ادمین</option>
+                            <option value="unitManager">مسئول دفتر</option>
+                            <option value="dataTransfer">مسئول انتقال داده</option>
+                            <option value="officeManager">مسئول دفتر</option>
+                            <option value="user">کاربر عادی</option>
+                        </select>
+                        </div>
+
+                    
+                        <button type="submit">ثبت نهایی</button>
+                    </form>
+
+                    <div id="preview" style="margin-top: 20px;"></div>
+                    <div id="photoMessage"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    
+     <script src="App.js"></script>
+    <script src="Register_photo.js"></script>
+</body>
+</html>

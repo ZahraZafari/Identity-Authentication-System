@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروژه داشبورد - صفحه Stand By</title>
+    <link rel="stylesheet" href="App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="app-container">
+        <header id="header">
+            <button id="menu-toggle" aria-label="باز/بسته کردن منو" aria-expanded="true">☰</button>
+            <h1 id="header-title">داشبورد اصلی</h1>
+            <div id="header-icons-set">
+                <button class="icon-button" aria-label="اعلانات"><span class="icon-placeholder">🔔</span></button>
+                <button class="icon-button" aria-label="پروفایل کاربر"><span class="icon-placeholder">👤</span></button>
+                <button class="icon-button" aria-label="تنظیمات"><span class="icon-placeholder">⚙️</span></button>
+            </div>
+        </header>
+        <div id="wrap">
+            <aside id="sidebar">
+                <h3>منوی اصلی</h3>
+                <ul>
+                     <li><a href="index.html"><span class="icon">🏠</span> <span class="link-text">صفحه اصلی</span></a></li>
+           <li><a href="login.html"><span class="icon">🔐</span> <span class="link-text">ورود</span></a></li>
+                    <li><a href="standby.html"><span class="icon">⏳</span> <span class="link-text">صفحه Stand By</span></a></li>
+                    <li><a href="face_detection.html"><span class="icon">👁️</span> <span class="link-text">تشخیص چهره</span></a></li>
+                    <li><a href="attendance_logs.html"><span class="icon">📊</span> <span class="link-text">گزارش نتایج تردد</span></a></li>
+                    <li><a href="Identity_Employee.html"><span class="icon">👥</span> <span class="link-text">مدیریت کاربران</span></a></li>
+                    <li><a href="./Profile.html"><span class="icon">🙍‍♂️</span> <span class="link-text">پروفایل</span></a></li>
+                    <li><a href="Device-setting.html"><span class="icon">⚙️</span> <span class="link-text">تنظیمات دستگاه</span></a></li>
+                    <li><a href="#" onclick="logout()"><span class="icon">🚪</span> <span class="link-text">خروج</span></a></li>
+                </ul>
+            </aside>
+            <main id="content">
+                <div class="standby-page-container">
+                    <h2>صفحه Stand By</h2>
+                    <div class="standby-info-box">
+                        <div class="time-date">
+                            <span id="current-time"></span><br>
+                            <span id="current-date"></span>
+                        </div>
+                        <div class="message-of-the-day">
+                            <p id="dynamic-message"></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="./App.js"></script>
+</body>
+</html>

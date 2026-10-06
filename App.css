@@ -1,0 +1,1629 @@
+/* تنظیمات پایه و عمومی */
+*, *::before, *::after {
+    box-sizing: border-box; /* اطمینان از محاسبه درست ابعاد شامل پدینگ و بوردر */
+}
+
+body {
+    margin: 0; /* حذف مارجین پیش‌فرض مرورگر */
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6; /* رنگ پس‌زمینه عمومی */
+    color: #333;
+    direction: rtl;
+    overflow-x: hidden; /* جلوگیری از اسکرول افقی ناخواسته */
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* تضمین می‌کند که کانتینر حداقل به اندازه ارتفاع ویوپورت باشد */
+    width: 100vw; /* تضمین می‌کند که کانتینر به اندازه عرض ویوپورت باشد */
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* استایل هدر */
+#header {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky; /* هدر در بالای صفحه ثابت می‌ماند */
+    top: 0;
+    z-index: 1010;
+    background-color: #5D3D8C; /* رنگ بنفش هدر دسکتاپ (پیش‌فرض) */
+    color: white; /* رنگ متن هدر دسکتاپ (پیش‌فرض) */
+}
+
+#menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: white; /* رنگ آیکون منو در دسکتاپ */
+}
+
+#header-title {
+    margin: 0;
+    font-size: 1.3rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#header-icons-set {
+    display: none; /* پیش‌فرض مخفی در دسکتاپ */
+    align-items: center;
+}
+
+#header-icons-set .icon-button {
+    background: none;
+    border: none;
+    font-size: 1.3rem; 
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    color: white; /* رنگ آیکون‌ها در دسکتاپ (اگر نمایش داده شوند) */
+}
+#header-icons-set .icon-button:last-child {
+    margin-right: 0;
+}
+.icon-placeholder {
+    display: inline-block;
+}
+
+
+/* محتوای اصلی و سایدبار */
+#wrap {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    padding: 0; /* حذف هرگونه پدینگ کلی از wrap */
+    gap: 0; /* اطمینان از عدم وجود فاصله بین آیتم‌های Flexbox */
+}
+
+/* بخش محتوای اصلی */
+#content {
+    flex-grow: 1; /* بخش محتوا فضای باقی‌مانده را پر می‌کند */
+    padding: 1.5rem; /* پدینگ داخلی محتوا */
+    background-color: #ffffff;
+    margin: 0; /* اطمینان از عدم وجود مارجین خارجی روی content */
+    transition: none; /* این transition دیگر نیازی به margin-right ندارد */
+}
+
+/* سایدبار */
+#sidebar {
+    flex-shrink: 0;
+    width: 250px; /* عرض سایدبار در دسکتاپ */
+    padding: 1rem; /* پدینگ داخلی سایدبار */
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    background-color: #343a40; /* رنگ سایدبار دسکتاپ */
+    color: #f8f9fa;
+    position: static; /* در دسکتاپ باید static باشد تا با Flexbox کار کند */
+    height: auto; /* ارتفاع خودکار در دسکتاپ */
+    transform: translateX(0); /* بازنشانی ترنسفرم موبایل */
+    margin: 0; /* اطمینان از عدم وجود مارجین خارجی روی sidebar */
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+    overflow-x: hidden;
+}
+
+#sidebar h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #f8f9fa;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar ul li a {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+    color: #adb5bd; /* رنگ لینک‌ها در سایدبار دسکتاپ */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#sidebar ul li a:hover {
+    background-color: #495057;
+    color: white;
+}
+
+#sidebar ul li a .icon {
+    margin-left: 10px;
+    font-size: 1.2em;
+    min-width: 20px;
+    text-align: center;
+}
+#sidebar ul li a .link-text {
+    transition: opacity 0.2s ease-out;
+}
+
+/* --- استایل‌های دیاگرام (فقط برای صفحه اصلی - Index) --- */
+/* این بخش برای دیاگرام بود و نیازی به تغییر ندارد اگر در index.html ثابت است. */
+.diagram-container {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background: #fdfdfd;
+    border-radius: 8px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.diagram-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.diagram-box {
+    border: 1px solid #777;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+.diagram-box:last-child {
+    margin-bottom: 0;
+}
+
+.header-diagram-box {
+    background-color: #5D3D8C;
+}
+
+.diagram-flex-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    direction: ltr;
+}
+
+.content-diagram-box {
+    background-color: #e0e8f0;
+    flex-grow: 1;
+    color: #333;
+}
+
+.sidebar-diagram-box {
+    background-color: #7fccc4;
+    width: 150px;
+    flex-shrink: 0;
+    color: #333;
+}
+
+.footer-diagram-box {
+    background-color: #333;
+}
+
+
+/* --- حالت دسکتاپ (بزرگتر از 768px) --- */
+@media (min-width: 769px) {
+    #header {
+        background-color: #5D3D8C;
+        color: white;
+    }
+    #menu-toggle,
+    #header-icons-set .icon-button {
+        color: white;
+    }
+    #header-icons-set {
+         display: none; /* اطمینان از مخفی بودن آیکون‌های موبایل در دسکتاپ */
+    }
+
+    /* این کلاس‌ها روی #app-container اعمال می‌شوند و width سایدبار را تغییر می‌دهند. */
+    #app-container.sidebar-collapsed-desktop #sidebar {
+        width: 70px;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+    #app-container.sidebar-collapsed-desktop #sidebar h3 {
+        display: none;
+    }
+    #app-container.sidebar-collapsed-desktop #sidebar .link-text {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+    }
+     #app-container.sidebar-collapsed-desktop #sidebar ul li a .icon {
+        margin-left: 0;
+    }
+
+    /* در دسکتاپ، چون سایدبار position: static است، content با flex-grow: 1 به طور خودکار
+       تمام فضای باقی‌مانده را پر می‌کند و نیازی به margin-right اضافی نیست. */
+    /* #content { margin-right: 250px; } */
+    /* #app-container.sidebar-collapsed-desktop #content { margin-right: 70px; } */
+}
+
+
+/* --- حالت موبایل (تا 768px) --- */
+@media (max-width: 768px) {
+    #header {
+        background-color: #ffffff;
+        color: #333;
+        justify-content: space-between; /* چینش مناسب عناصر هدر */
+        padding: 0.5rem 1rem; /* پدینگ هدر در موبایل */
+    }
+    #menu-toggle {
+        order: 1; /* دکمه منو در سمت راست */
+        display: block; /* نمایش دکمه منو در موبایل */
+        color: #333; /* رنگ تیره آیکون منو */
+        font-size: 1.5rem; /* کمی کوچکتر */
+        padding: 0.3rem;
+    }
+    #header-title {
+        order: 2; /* عنوان در وسط */
+        flex-grow: 1; /* اجازه رشد به عنوان */
+        text-align: right; /* عنوان سمت راست دکمه منو */
+        font-size: 1rem; /* کوچکتر کردن عنوان */
+        margin-right: 10px; /* فاصله از دکمه منو */
+        margin-left: 0; /* حذف مارجین center */
+    }
+    #header-icons-set {
+        order: 3; /* آیکون‌ها در سمت چپ */
+        display: flex; /* نمایش آیکون‌های اضافی در موبایل */
+        margin-right: auto; /* فشار دادن آیکون‌ها به چپ */
+        gap: 5px; /* فاصله بین آیکون‌ها */
+    }
+    #header-icons-set .icon-button {
+        color: #333;
+        font-size: 1.1rem; /* کوچکتر کردن آیکون‌ها */
+        padding: 0.3rem;
+        margin-right: 0; /* حذف مارجین‌های قبلی */
+    }
+
+    #wrap {
+        flex-direction: column;
+        padding: 0; /* حذف پدینگ کلی از wrap برای موبایل */
+        gap: 0; /* اطمینان از عدم وجود گپ در حالت عمودی موبایل */
+    }
+
+    #sidebar {
+        position: fixed;
+        top: 0;
+        right: -280px; /* سایدبار به صورت پیش‌فرض خارج از صفحه */
+        width: 280px;
+        height: 100vh;
+        background-color: #ffffff; /* پس‌زمینه سفید برای منوی موبایل */
+        color: #333;
+        z-index: 1000;
+        transition: right 0.3s ease-in-out;
+        padding-top: 4rem; /* برای شروع شدن از زیر هدر */
+        box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+        border-radius: 0;
+        margin: 0; /* اطمینان از عدم وجود مارجین در موبایل */
+    }
+    #sidebar.open {
+        right: 0; /* نمایش سایدبار با انیمیشن از راست */
+    }
+    #sidebar h3 {
+        color: #555;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+    #sidebar ul li a {
+        color: #333;
+        border-bottom: 1px solid #eee;
+        padding: 1rem;
+    }
+    #sidebar ul li:last-child a {
+        border-bottom: none;
+    }
+    #sidebar ul li a:hover {
+        background-color: #f0f0f0;
+    }
+    #sidebar .link-text {
+        opacity: 1;
+        width: auto;
+    }
+
+    #content {
+        margin: 0; /* حذف هرگونه مارجین در موبایل */
+        padding: 1rem; /* پدینگ داخلی برای محتوا در موبایل */
+    }
+}
+
+/* --- استایل‌های صفحه Stand By --- */
+.standby-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.standby-info-box {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.time-date {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.time-date span:last-child {
+    display: block;
+    font-size: 1.5rem;
+    color: #555;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.message-of-the-day {
+    font-size: 1.2rem;
+    color: #333;
+    font-style: italic;
+    min-height: 40px;
+    padding: 10px;
+    background-color: #e6f7ff;
+    border-radius: 5px;
+    border: 1px solid #cceeff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- استایل‌های جدید برای صفحه Face Detection --- */
+.face-detection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem; /* پدینگ داخلی برای این کانتینر */
+}
+
+.camera-feed-box {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    padding-bottom: 75%; /* نسبت تصویر 4:3 */
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#webcam-feed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scaleX(-1); /* برای شبیه‌سازی دوربین سلفی */
+}
+
+.overlay-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    color: white;
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.top-left-overlay { /* در RTL، این "بالا سمت راست" است */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: left;
+    direction: ltr; /* برای نمایش صحیح ساعت و تاریخ با اعداد انگلیسی */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.top-right-overlay { /* در RTL، این "بالا سمت چپ" است */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#connection-status-icon {
+    font-size: 1.5rem;
+}
+.connection-online {
+    color: #28a745;
+}
+.connection-offline {
+    color: #dc3545;
+}
+
+.guide-link {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+.guide-link a {
+    color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.guide-link a .icon {
+    margin-left: 8px;
+    font-size: 1.3em;
+}
+
+.detection-message {
+    background-color: #f0f8ff;
+    border: 1px solid #cceeff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 640px;
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.detection-message.show {
+    opacity: 1;
+}
+.detection-message .message-text {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.detection-message.success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+.detection-message.error {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+.detection-message.info {
+    background-color: #cfe2ff;
+    border-color: #0d6efd;
+    color: #052c65;
+}
+
+.user-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 640px;
+}
+
+.user-options .option-item {
+    flex: 1 1 200px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user-options .option-item:hover {
+    background-color: #dee2e6;
+    transform: translateY(-2px);
+}
+.user-options .option-item .icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+.user-options .option-item a {
+    font-weight: bold;
+    color: #333;
+}
+.user-options .option-item.hidden {
+    display: none !important;
+}
+
+/* استایل‌های خاص برای welcome-box (ورود/خروج/اصلاح) */
+.user-options .welcome-box {
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+}
+.user-options .welcome-box .icon {
+    color: #0c5460;
+}
+.user-options .welcome-box .welcome-message {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.user-options .welcome-box .correction-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.user-options .welcome-box .correction-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.user-options .welcome-box .correction-button:hover {
+    background-color: #0056b3;
+}
+.user-options .welcome-box .correction-options.hidden {
+    display: none;
+}
+
+
+/* Responsive adjustments for Face Detection page */
+@media (max-width: 600px) {
+    .camera-feed-box {
+        margin-bottom: 15px;
+        padding-bottom: 66%; /* تقريباً 3:2 برای موبایل */
+    }
+    .overlay-elements {
+        font-size: 0.8rem;
+    }
+    .top-left-overlay, .top-right-overlay {
+        top: 5px;
+        right: 5px;
+        left: 5px;
+    }
+    #connection-status-icon {
+        font-size: 1.2rem;
+    }
+    .guide-link {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+    .detection-message {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    .detection-message .message-text {
+        font-size: 1rem;
+    }
+    .user-options .option-item {
+        flex: 1 1 150px; /* آیتم‌ها در صفحه‌های کوچک‌تر */
+        padding: 10px;
+    }
+    .user-options .option-item .icon {
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+    .user-options .welcome-box .welcome-message {
+        font-size: 1.1rem;
+    }
+}
+
+/* Dashboard Widgets for index.html */
+.dashboard-widgets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* فاصله بین ویجت‌ها */
+    margin-top: 24px;
+}
+
+.widget {
+    flex: 1 1 calc(33.333% - 16px); /* 3 ستون با فاصله بین آن‌ها */
+    background: #ffffff;
+    padding: 20px; /* پدینگ داخلی ویجت */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    box-sizing: border-box; /* برای محاسبه درست ابعاد شامل پدینگ */
+}
+
+.widget h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #5D3D8C; /* رنگ بنفش برای عنوان ویجت */
+}
+
+.primary-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #5D3D8C;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+.primary-button:hover {
+    background-color: #4a2f70;
+}
+
+.link-button {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #007bff; /* رنگ آبی لینک */
+    transition: color 0.2s ease;
+}
+.link-button:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Media query for smaller screens on dashboard widgets */
+@media (max-width: 992px) {
+    .widget {
+        flex: 1 1 calc(50% - 16px); /* 2 ستون در تبلت */
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-widgets {
+        gap: 12px; /* کاهش گپ در موبایل */
+        margin-top: 20px;
+    }
+    .widget {
+        flex: 1 1 100%; /* 1 ستون در موبایل */
+        padding: 15px;
+    }
+    .widget h3 {
+        font-size: 1.1rem;
+    }
+    .primary-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+/* --- استایل‌های به‌روز شده و جدید برای صفحه تنظیمات دستگاه (Device Settings) --- */
+.settings-page-container {
+    padding: 1rem;
+    max-width: 900px; /* محدود کردن عرض برای خوانایی بهتر فرم‌ها */
+    margin: 0 auto;
+}
+
+.settings-page-container h2 {
+    margin-bottom: 25px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.settings-section {
+    background-color: #ffffff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.settings-section h3 {
+    font-size: 1.3rem;
+    color: #5D3D8C;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.icon-title {
+    margin-left: 10px; /* فاصله آیکون از متن عنوان */
+    font-size: 1.1em; /* اندازه آیکون متناسب با متن */
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-sizing: border-box; /* مهم برای جلوگیری از بزرگتر شدن از والد */
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+select.form-control {
+    height: calc(1.5em + 1.2rem + 2px); /* برای هم ارتفاع شدن با input */
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 10px; /* فاصله از آخرین فیلد فرم */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.btn-success:hover {
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+    color: #212529;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.btn-info:hover {
+    background-color: #117a8b;
+    border-color: #10707f;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #bd2130;
+    border-color: #b21f2d;
+}
+
+
+/* Placeholder section styling */
+.placeholder-section {
+    background-color: #f0f4f8;
+    border-left: 5px solid #6c757d;
+}
+.placeholder-section h3 {
+    color: #6c757d;
+}
+.placeholder-section p {
+    color: #495057;
+    font-size: 0.95rem;
+}
+.placeholder-section ul {
+    list-style: disc;
+    margin-right: 20px;
+    padding-right: 10px;
+    color: #555;
+}
+.placeholder-section ul li {
+    margin-bottom: 5px;
+}
+.placeholder-section .btn {
+    margin-right: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .settings-page-container {
+        padding: 0.5rem;
+    }
+    .settings-section {
+        padding: 15px;
+    }
+    .settings-section h3 {
+        font-size: 1.15rem;
+    }
+    .form-control, .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.65rem;
+    }
+     select.form-control {
+        height: calc(1.5em + 1rem + 2px);
+    }
+}
+/* --- استایل‌های بخش "سایر تنظیمات پیشرفته" --- */
+.advanced-settings-section h3 {
+    color: #343a40; /* رنگ تیره‌تر برای این بخش */
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* ایجاد ستون‌های واکنش‌گرا */
+    gap: 20px; /* فاصله بین آیتم‌های گرید */
+}
+
+.setting-item {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.setting-item .setting-icon {
+    font-size: 1.8rem;
+    color: #5D3D8C; /* رنگ اصلی تم */
+    margin-bottom: 10px;
+    text-align: right; /* آیکون در سمت راست */
+}
+
+.setting-item h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.setting-item p {
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1; /* باعث می‌شود پاراگراف فضای خالی را پر کند و دکمه‌ها پایین بمانند */
+}
+
+.setting-item .btn, .setting-item .form-control-sm {
+    margin-top: auto; /* دکمه‌ها و فرم‌ها را به پایین آیتم می‌چسباند */
+}
+
+.btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 0.2rem;
+}
+
+.form-control-sm {
+    height: auto; /* اجازه می‌دهد ارتفاع بر اساس پدینگ و فونت تنظیم شود */
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+.file-input-sm {
+    padding: 0.2rem; /* پدینگ کمتر برای input file */
+    margin-bottom: 5px;
+}
+
+.sr-only { /* برای مخفی کردن labelها به صورت بصری ولی در دسترس بودن برای screen readerها */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.inline-form {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.inline-form .form-control-sm {
+    flex-grow: 1; /* اجازه می‌دهد select فضای بیشتری بگیرد */
+}
+
+
+.setting-item.danger-zone {
+    border-left: 4px solid #dc3545; /* یک حاشیه برای آیتم‌های خطرناک */
+}
+.setting-item.danger-zone .setting-icon {
+    color: #dc3545;
+}
+
+
+@media (max-width: 600px) {
+    .settings-grid {
+        grid-template-columns: 1fr; /* در صفحات کوچک، تک ستونه */
+    }
+}
+/* --- استایل‌های کارت‌های تعاملی در بخش "سایر تنظیمات پیشرفته" --- */
+.setting-item.interactive-card {
+    /* تغییرات جزئی در پدینگ یا ساختار پایه اگر لازم باشد */
+    padding: 0; /* پدینگ داخلی توسط هدر و اکشن‌ها مدیریت می‌شود */
+    display: flex;
+    flex-direction: column; /* اطمینان از چیدمان عمودی */
+}
+
+.interactive-card .card-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    background-color: #f8f9fa; /* رنگ پس‌زمینه ملایم برای هدر کارت */
+    border-top-left-radius: 6px; /* گرد کردن گوشه‌های بالا */
+    border-top-right-radius: 6px;
+}
+
+.interactive-card .card-header .setting-icon {
+    margin-bottom: 0; /* حذف مارجین پایین آیکون در هدر */
+    margin-left: 10px;
+    font-size: 1.5rem; /* کمی کوچکتر برای هدر کارت */
+}
+
+.interactive-card .card-header h4 {
+    margin-bottom: 0; /* حذف مارجین پایین عنوان در هدر */
+    font-size: 1.05rem;
+}
+
+.interactive-card .card-description {
+    padding: 15px;
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.5;
+    flex-grow: 1; /* این مهم است تا توضیحات فضای لازم را بگیرد */
+    margin-bottom: 0; /* حذف مارجین اضافه اگر قبلا بوده */
+}
+
+.interactive-card .card-actions {
+    padding: 10px 15px;
+    border-top: 1px solid #e9ecef;
+    background-color: #fdfdff; /* پس زمینه کمی متفاوت برای بخش اکشن‌ها */
+    display: flex;
+    gap: 10px; /* فاصله بین دکمه‌ها/لینک‌ها */
+    flex-wrap: wrap; /* اگر تعداد اکشن‌ها زیاد شود، به خط بعدی بروند */
+    border-bottom-left-radius: 6px; /* گرد کردن گوشه‌های پایین */
+    border-bottom-right-radius: 6px;
+    margin-top: auto; /* این اطمینان می‌دهد که بخش اکشن‌ها همیشه پایین کارت است */
+}
+
+.interactive-card .action-link,
+.interactive-card .action-button {
+    display: inline-flex; /* برای هم‌راستایی آیکون و متن */
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.interactive-card .action-link i,
+.interactive-card .action-button i {
+    margin-left: 6px; /* فاصله آیکون از متن */
+    font-size: 0.9em; /* اندازه آیکون نسبت به متن */
+}
+
+/* استایل لینک‌ها */
+.interactive-card .action-link {
+    background-color: #e9ecef;
+    color: #343a40;
+    border-color: #ced4da;
+}
+.interactive-card .action-link:hover {
+    background-color: #dde2e7;
+    color: #212529;
+}
+
+/* استایل دکمه‌ها (می‌تواند شبیه لینک‌ها باشد یا متفاوت) */
+.interactive-card .action-button {
+    background-color: #007bff; /* رنگ اصلی برای دکمه‌ها */
+    color: white;
+}
+.interactive-card .action-button:hover {
+    background-color: #0056b3;
+}
+
+/* استایل خاص برای دکمه پاکسازی (مثال) */
+.interactive-card .action-button[onclick*="clearUnknownFacesLog"] {
+    background-color: #dc3545; /* قرمز برای عملیات تخریبی */
+    color: white;
+}
+.interactive-card .action-button[onclick*="clearUnknownFacesLog"]:hover {
+    background-color: #c82333;
+}
+/* --- استایل‌های پنل مدیریت کاربران در خود کارت --- */
+.setting-item.user-management-panel {
+    padding: 0; /* پدینگ داخلی توسط هدر و محتوا مدیریت می‌شود */
+}
+
+.user-management-panel .panel-content {
+    padding: 15px;
+}
+
+.user-management-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap; /* برای موبایل */
+    gap: 10px;
+}
+
+.user-search-container {
+    display: flex;
+    gap: 5px;
+}
+.user-search-container input {
+    min-width: 150px; /* حداقل عرض برای فیلد جستجو */
+}
+
+.user-list-container {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    max-height: 200px; /* محدود کردن ارتفاع لیست و فعال کردن اسکرول */
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.user-list-container .list-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.simulated-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.simulated-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 5px;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.85rem;
+}
+.simulated-list li:last-child {
+    border-bottom: none;
+}
+
+.simulated-list .user-name {
+    flex-grow: 1;
+    color: #333;
+}
+.simulated-list .user-role-tag {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    margin: 0 10px;
+    white-space: nowrap;
+}
+
+
+.user-item-actions button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    padding: 3px 5px;
+    font-size: 0.9em; /* اندازه آیکون‌ها */
+    margin-right: 3px; /* فاصله بین دکمه‌های اکشن */
+}
+.user-item-actions button:hover {
+    color: #0056b3;
+}
+.user-item-actions button.danger {
+    color: #dc3545;
+}
+.user-item-actions button.danger:hover {
+    color: #a71d2a;
+}
+.user-item-actions button i { /* برای اینکه آیکون ها وسط چین شوند */
+    vertical-align: middle;
+}
+
+
+.user-list-empty {
+    display: none; /* در ابتدا مخفی */
+}
+.role-hidden {
+    display: none !important;
+}
+/* Style for Access Denied Message */
+.access-denied-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 50px auto;
+    max-width: 600px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    color: #495057;
+}
+
+.access-denied-icon {
+    font-size: 48px;
+    color: #dc3545; /* Red color for warning */
+    margin-bottom: 20px;
+}
+
+.access-denied-title {
+    font-size: 24px;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.access-denied-message {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.access-denied-suggestion {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* --- استایل‌های اختصاصی برای صفحه گزارش نتایج تردد (attendance_logs.css) --- */
+
+.filter-section {
+    background-color: #f8f9fa;
+    padding: 20px; /* افزایش پدینگ */
+    border-radius: 8px;
+    margin-bottom: 25px; /* افزایش فاصله */
+    border: 1px solid #e0e0e0; /* بوردر مشخص‌تر */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* افزودن سایه ملایم */
+}
+
+.filter-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px; /* افزایش فاصله */
+    font-size: 1.3rem; /* کمی بزرگتر کردن فونت عنوان */
+    color: #343a40;
+    display: flex; /* برای هم‌راستایی آیکون با متن */
+    align-items: center;
+}
+.filter-section h3 i {
+    margin-left: 10px; /* فاصله آیکون از متن */
+    color: #5D3D8C; /* رنگ آیکون */
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* افزایش فاصله بین فیلدها */
+    align-items: flex-end;
+}
+
+.filter-controls .form-group {
+    margin-bottom: 0;
+    flex: 1 1 220px; /* اجازه رشد و حداقل عرض بیشتر */
+}
+.filter-controls .form-group label {
+    font-weight: 500; /* کمی نازک‌تر کردن فونت لیبل */
+    font-size: 0.9rem;
+}
+
+/* استایل دکمه‌ها در بخش فیلتر */
+.filter-controls .btn {
+    padding: 0.5rem 1rem; /* پدینگ دکمه‌ها */
+    min-width: 150px; /* حداقل عرض برای دکمه‌ها */
+    font-size: 0.95rem;
+}
+.filter-controls .btn i {
+    margin-left: 8px;
+}
+
+
+/* استایل بخش نتایج گزارش (که از settings-section ارث می‌برد) */
+#report-results-container h3 {
+    font-size: 1.3rem;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+#report-summary-info.alert-info { /* استایل برای خلاصه گزارش */
+    background-color: #e6f7ff;
+    border-color: #b3e6ff;
+    color: #004085;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+
+.report-table-container {
+    overflow-x: auto;
+    margin-top: 10px; /* کاهش فاصله از خلاصه */
+    border: 1px solid #dee2e6; /* بوردر دور کانتینر جدول */
+    border-radius: 5px;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem; /* کمی کوچکتر کردن فونت جدول برای جا شدن بهتر */
+}
+
+.report-table th, .report-table td {
+    border: 1px solid #e0e0e0; /* بوردر سلول‌ها کمی روشن‌تر */
+    padding: 10px 12px; /* پدینگ سلول‌ها */
+    text-align: right;
+    white-space: nowrap; /* جلوگیری از شکستن متن در سلول‌ها */
+}
+
+.report-table th {
+    background-color: #f2f2f2; /* رنگ پس‌زمینه هدر جدول */
+    font-weight: 600;
+    color: #333;
+    position: sticky; /* چسباندن هدر هنگام اسکرول */
+    top: 0; /* فقط در صورتی که کانتینر خودش اسکرول داشته باشد */
+    z-index: 10;
+}
+
+.report-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* رنگ راه‌راه برای خوانایی بهتر */
+}
+.report-table tbody tr:hover {
+    background-color: #e9ecef; /* هایلایت ردیف هنگام هاور */
+}
+
+.report-table tfoot td {
+    font-weight: bold;
+    background-color: #e0e0e0; /* رنگ پس‌زمینه فوتر */
+    color: #212529;
+}
+.report-table .total-summary-row td { /* این کلاس در JS اضافه می‌شود */
+    background-color: #cce5ff !important; /* رنگ برای ردیف تجمیعی کلی، رنگ مهم‌تر */
+    color: #004085;
+    font-weight: bold;
+}
+.report-table .text-center {
+    text-align: center !important;
+}
+
+
+/* استایل بخش نمودار */
+#charts-section h3 {
+    font-size: 1.3rem;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+.chart-placeholder {
+    border: 2px dashed #007bff;
+    padding: 40px 20px; /* پدینگ داخلی */
+    text-align: center;
+    margin-top: 15px; /* کاهش فاصله */
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    color: #007bff;
+    font-size: 0.95rem;
+}
+.chart-placeholder p {
+    margin-bottom: 10px;
+}
+.chart-placeholder img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* استایل بخش وضعیت دستگاه */
+.status-section {
+    margin-top: 30px;
+    padding: 20px; /* افزایش پدینگ */
+    background-color: #f8f9fa; /* رنگ پس‌زمینه مشابه فیلتر */
+    border: 1px solid #e0e0e0; /* بوردر */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* سایه */
+}
+
+.status-section h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem; /* هم‌اندازه با عنوان فیلتر */
+    color: #5D3D8C;
+    display: flex;
+    align-items: center;
+}
+.status-section h4 i {
+    margin-left: 10px;
+}
+
+.status-item {
+    margin-bottom: 12px; /* افزایش فاصله بین آیتم‌ها */
+    font-size: 0.95rem;
+    padding: 8px 0; /* کمی پدینگ عمودی */
+    border-bottom: 1px dashed #eee; /* جداکننده ملایم */
+}
+.status-item:last-child {
+    border-bottom: none; /* حذف بوردر از آخرین آیتم */
+}
+
+.status-item strong {
+    display: inline-block;
+    min-width: 220px; /* افزایش حداقل عرض برای هم‌ترازی بهتر */
+    color: #495057; /* رنگ متن قوی‌تر */
+    font-weight: 500;
+}
+.status-item span {
+    color: #212529; /* رنگ متن مقدار */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .filter-controls {
+        gap: 10px; /* کاهش فاصله در موبایل */
+    }
+    .filter-controls .form-group {
+        flex: 1 1 100%; /* فیلدها تمام عرض در موبایل */
+    }
+    .filter-controls .btn {
+        width: 100%; /* دکمه‌ها تمام عرض */
+        margin-top: 5px;
+    }
+    .report-table {
+        font-size: 0.8rem; /* فونت کوچکتر جدول در موبایل */
+    }
+    .report-table th, .report-table td {
+        padding: 6px 8px; /* پدینگ کمتر سلول‌ها */
+    }
+    .status-item strong {
+        min-width: 150px; /* کاهش حداقل عرض در موبایل */
+        display: block; /* لیبل‌ها بالای مقدار در موبایل */
+        margin-bottom: 3px;
+    }
+}
+.chart-placeholder canvas {
+    max-width: 100%;
+    max-height: 300px; /* یا ارتفاع دلخواه */
+}
+/* --- استایل‌های بخش لاگ‌ها و هشدارهای سیستم --- */
+#system-logs-section h3 {
+    color: #dc3545; /* رنگ متفاوت برای تاکید بر هشدارها/لاگ‌ها */
+}
+
+.log-list-container {
+    max-height: 400px; /* محدود کردن ارتفاع برای اسکرول */
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 0;
+    background-color: #fff;
+}
+
+.log-item {
+    display: flex;
+    align-items: flex-start; /* هم‌ترازی بهتر اگر متن چند خطی شود */
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+    gap: 10px; /* فاصله بین آیکن و محتوا */
+}
+
+.log-item:last-child {
+    border-bottom: none;
+}
+
+.log-item .log-icon {
+    font-size: 1.3em;
+    margin-top: 2px; /* تنظیم دقیق‌تر هم‌راستایی عمودی */
+    min-width: 20px; /* برای حفظ فضا حتی اگر آیکن نباشد */
+    text-align: center;
+}
+
+.log-item .log-icon.log-error { color: #dc3545; }       /* قرمز برای خطا */
+.log-item .log-icon.log-warning { color: #ffc107; }     /* زرد برای هشدار */
+.log-item .log-icon.log-info { color: #17a2b8; }        /* آبی برای اطلاعات */
+.log-item .log-icon.log-auth-failure { color: #6c757d; } /* خاکستری برای ورود ناموفق */
+.log-item .log-icon.log-usb { color: #007bff; }         /* آبی دیگر برای USB */
+
+.log-item .log-content {
+    flex-grow: 1;
+}
+
+.log-item .log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.log-item .log-type {
+    font-weight: bold;
+    color: #333;
+}
+.log-item .log-type.log-error { color: #dc3545; }
+.log-item .log-type.log-warning { color: #b98900; } /* رنگ تیره‌تر برای خوانایی روی پس‌زمینه سفید */
+
+
+.log-item .log-timestamp {
+    font-size: 0.8em;
+    color: #6c757d;
+    direction: ltr; /* برای نمایش صحیح تاریخ و ساعت انگلیسی */
+    white-space: nowrap;
+}
+
+.log-item .log-message {
+    color: #555;
+    line-height: 1.5;
+}
+
+.log-item .log-details {
+    font-size: 0.8em;
+    color: #007bff;
+    margin-top: 5px;
+}
+.log-item .log-details a {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.log-list-empty {
+    display: none; /* در ابتدا مخفی */
+}
+.role-hidden {
+    display: none !important;
+}
+/* Style for Access Denied Message */
+.access-denied-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 50px auto;
+    max-width: 600px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    color: #495057;
+}
+
+.access-denied-icon {
+    font-size: 48px;
+    color: #dc3545; /* Red color for warning */
+    margin-bottom: 20px;
+}
+
+.access-denied-title {
+    font-size: 24px;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.access-denied-message {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.access-denied-suggestion {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;}
+
+  .profile-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-photo-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.profile-photo {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.profile-details {
+  list-style: none;
+  padding: 0;
+  text-align: right;
+}
